@@ -1,0 +1,25 @@
+    @import 'variables';
+    @import 'mixins';
+    @import 'reset';
+    @import 'layout';
+
+    .hero {
+    background: url('/assets/img/hero-bg.jpg') center / cover no-repeat;
+    color: $white;
+    padding: 120px 0;
+
+    h1 { font-size: 3rem; }
+    p   { margin-top: .5rem; font-size: 1.25rem; }
+
+    .btn-primary {
+        @include button($primary, $light);
+        margin-top: 2rem;
+    }
+    }
+
+    .section-video,
+    .section-achievements {
+    padding: 60px 0;
+
+    h2 { text-align: center; margin-bottom: 30px; }
+    }
