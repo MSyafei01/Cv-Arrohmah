@@ -4,7 +4,7 @@
     const path = require('path');
 
     // Function to compile SCSS to CSS
-    
+
     function compileSass() {
     try {
         const result = sass.compile(path.join(__dirname, '../src/styles/main.scss'), {
@@ -24,7 +24,7 @@
     }
     }
 
-    // Function to build JavaScript
+    // Di scripts/dev.js - Ganti function buildJS() dengan:
     async function buildJS() {
     try {
         await esbuild.build({
@@ -32,7 +32,6 @@
         bundle: true,
         outfile: path.join(__dirname, '../public/assets/js/app.bundle.js'),
         minify: false,
-        sourcemap: true,
         target: ['es6']
         });
         console.log('✅ JavaScript built successfully');

@@ -1,4 +1,4 @@
-    import Header from '../components/Header';
+/*    import Header from '../components/Header';
     import Footer from '../components/Footer';
 
     const TestimonialsPage = () => {
@@ -54,3 +54,5 @@
     };
 
     export default TestimonialsPage;
+
+    */

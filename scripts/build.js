@@ -23,22 +23,22 @@
     }
     }
 
-    // Function to build JavaScript (minified)
+// Di scripts/dev.js - Ganti function buildJS() dengan:
     async function buildJS() {
     try {
         await esbuild.build({
         entryPoints: [path.join(__dirname, '../src/app.js')],
         bundle: true,
         outfile: path.join(__dirname, '../public/assets/js/app.bundle.js'),
-        minify: true,
-        sourcemap: false,
+        minify: false,
         target: ['es6']
         });
-        console.log('✅ JavaScript built and minified successfully');
+        console.log('✅ JavaScript built successfully');
     } catch (error) {
         console.error('❌ Error building JavaScript:', error);
     }
     }
+
 
     // Function to copy HTML files
     function copyHTML() {

@@ -1,4 +1,4 @@
-    interface VideoEmbedProps {
+/*    interface VideoEmbedProps {
     videoId: string;
     title: string;
     width?: string;
@@ -22,3 +22,4 @@
     };
 
     export default VideoEmbed;
+    */

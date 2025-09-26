@@ -1,4 +1,4 @@
-    interface HeroProps {
+/*    interface HeroProps {
     title: string;
     subtitle: string;
     buttonText?: string;
@@ -19,3 +19,4 @@
     };
 
     export default Hero;
+    */

@@ -1,4 +1,4 @@
-    // Utility functions for API calls (placeholder for future use)
+    /* Utility functions for API calls (placeholder for future use)
     export const fetchData = async (url: string) => {
     try {
         const response = await fetch(url);
@@ -31,4 +31,4 @@
         console.error('Error posting data:', error);
         throw error;
     }
-    };
+    };*/

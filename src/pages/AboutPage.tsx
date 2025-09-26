@@ -1,4 +1,4 @@
-    import Header from '../components/Header';
+/*    import Header from '../components/Header';
     import Footer from '../components/Footer';
     import VideoEmbed from '../components/VideoEmbed';
 
@@ -32,3 +32,4 @@
     };
 
     export default AboutPage;
+    */
