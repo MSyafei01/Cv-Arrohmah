@@ -4,7 +4,6 @@
     const path = require('path');
 
     // Function to compile SCSS to CSS
-
     function compileSass() {
     try {
         const result = sass.compile(path.join(__dirname, '../src/styles/main.scss'), {
@@ -24,7 +23,7 @@
     }
     }
 
-    // Di scripts/dev.js - Ganti function buildJS() dengan:
+    // Function to build JavaScript (VANILLA JS)
     async function buildJS() {
     try {
         await esbuild.build({
@@ -42,38 +41,56 @@
 
     // Function to copy HTML files
     function copyHTML() {
-    const srcDir = path.join(__dirname, '../src/pages');
     const publicDir = path.join(__dirname, '../public');
     
-    // Create simplified HTML files for direct access
-    const pages = ['HomePage', 'AboutPage', 'ProductsPage', 'TestimonialsPage', 'ContactPage'];
+    // Create basic HTML files
+    const pages = [
+        { name: 'index', title: 'Monascho - Home' },
+        { name: 'about', title: 'Tentang Kami - Monascho' },
+        { name: 'products', title: 'Produk - Monascho' },
+        { name: 'testimonials', title: 'Testimoni - Monascho' },
+        { name: 'contact', title: 'Kontak - Monascho' }
+    ];
     
     pages.forEach(page => {
-        const content = `
-    <!DOCTYPE html>
+        const content = `<!DOCTYPE html>
     <html lang="id">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${page.replace('Page', '')} - Monascho</title>
+        <title>${page.title}</title>
         <link rel="stylesheet" href="assets/css/main.min.css">
-        <link rel="icon" href="favicon.ico">
     </head>
     <body>
         <div id="app"></div>
         <script src="assets/js/app.bundle.js"></script>
     </body>
-    </html>
-        `;
+    </html>`;
         
-        const filename = page === 'HomePage' ? 'index.html' : `${page.replace('Page', '').toLowerCase()}.html`;
+        const filename = page.name === 'index' ? 'index.html' : `${page.name}.html`;
         fs.writeFileSync(path.join(publicDir, filename), content);
     });
     
     console.log('✅ HTML files copied successfully');
     }
 
+    // Create assets directories if they don't exist
+    function createDirs() {
+    const dirs = [
+        path.join(__dirname, '../public/assets/css'),
+        path.join(__dirname, '../public/assets/js'),
+        path.join(__dirname, '../public/assets/img')
+    ];
+    
+    dirs.forEach(dir => {
+        if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+        }
+    });
+    }
+
     // Initial build
+    createDirs();
     compileSass();
     buildJS();
     copyHTML();
@@ -89,7 +106,7 @@
     });
 
     fs.watch(path.join(__dirname, '../src'), { recursive: true }, (eventType, filename) => {
-    if (filename && (filename.endsWith('.js') || filename.endsWith('.tsx'))) {
+    if (filename && filename.endsWith('.js')) {
         console.log(`📦 JavaScript file changed: ${filename}`);
         buildJS();
     }
