@@ -1,0 +1,217 @@
+    // Header
+    .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all $transition-fast;
+    
+    &.scrolled {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .container {
+        @include container;
+        @include flex-between;
+        padding-top: $spacing-sm;
+        padding-bottom: $spacing-sm;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $primary-color;
+    }
+    
+    .nav {
+        @media (max-width: $breakpoint-md) {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background-color: white;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transition: right $transition-medium;
+        
+        &.active {
+            right: 0;
+        }
+        }
+        
+        &-list {
+        display: flex;
+        gap: $spacing-md;
+        
+        @media (max-width: $breakpoint-md) {
+            flex-direction: column;
+            padding: $spacing-xl $spacing-md;
+            gap: $spacing-lg;
+        }
+        }
+        
+        &-link {
+        font-weight: 600;
+        position: relative;
+        padding: $spacing-xs 0;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: $secondary-color;
+            transition: width $transition-fast;
+        }
+        
+        &:hover::after,
+        &.active::after {
+            width: 100%;
+        }
+        }
+    }
+    
+    .menu-toggle {
+        display: none;
+        
+        @media (max-width: $breakpoint-md) {
+        display: block;
+        font-size: 1.5rem;
+        z-index: 1001;
+        }
+    }
+    }
+
+    // Footer
+    .footer {
+    background-color: $dark-color;
+    color: $light-color;
+    padding: $spacing-lg 0;
+    
+    .container {
+        @include container;
+    }
+    
+    &-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: $spacing-lg;
+        margin-bottom: $spacing-lg;
+    }
+    
+    &-section {
+        h3 {
+        margin-bottom: $spacing-md;
+        color: white;
+        }
+        
+        p, a {
+        color: rgba(255,255,255,0.7);
+        margin-bottom: $spacing-xs;
+        display: block;
+        
+        &:hover {
+            color: white;
+        }
+        }
+    }
+    
+    &-bottom {
+        text-align: center;
+        padding-top: $spacing-md;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        font-size: 0.9rem;
+        color: rgba(255,255,255,0.5);
+    }
+    }
+
+    // Hero Section
+    .hero {
+    min-height: 100vh;
+    @include flex-center;
+    text-align: center;
+    background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.3);
+    }
+    
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+    
+    h1 {
+        font-size: 3rem;
+        margin-bottom: $spacing-md;
+        
+        @media (min-width: $breakpoint-md) {
+        font-size: 4rem;
+        }
+    }
+    
+    p {
+        font-size: 1.2rem;
+        margin-bottom: $spacing-lg;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .btn {
+        @include button-style;
+        background-color: $accent-color;
+        
+        &:hover {
+        background-color: darken($accent-color, 10%);
+        }
+    }
+    }
+
+    // Section Common Styles
+    .section {
+    @include section-padding;
+    
+    &-title {
+        @include heading-style;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: $spacing-lg;
+        
+        @media (min-width: $breakpoint-md) {
+        font-size: 3rem;
+        }
+    }
+    }
+
+    // Grid System
+    .grid {
+    display: grid;
+    gap: $spacing-md;
+    
+    &-2 {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    &-3 {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    &-4 {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    }
