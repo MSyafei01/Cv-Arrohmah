@@ -1,0 +1,55 @@
+    @mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    @mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+
+    @mixin container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-sm;
+    
+    @media (min-width: $breakpoint-md) {
+        padding: 0 $spacing-md;
+    }
+    }
+
+    @mixin section-padding {
+    padding: $spacing-lg 0;
+    
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-xl 0;
+    }
+    }
+
+    @mixin heading-style {
+    font-family: $font-heading;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: $spacing-md;
+    }
+
+    @mixin button-style {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: $secondary-color;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all $transition-fast;
+    border: none;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: darken($secondary-color, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    }
