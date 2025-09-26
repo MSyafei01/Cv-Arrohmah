@@ -27,9 +27,9 @@
             <div class="footer-section">
                 <h3>Ikuti Kami</h3>
                 <div class="social-links">
-                <a href="#" aria-label="Facebook">FB</a>
+                <a href="" aria-label="Facebook">FB</a>
                 <a href="#" aria-label="Instagram">IG</a>
-                <a href="#" aria-label="Twitter">TW</a>
+                <a href="https://www.tiktok.com/@monascho" aria-label="Tiktok">TW</a>
                 <a href="#" aria-label="LinkedIn">IN</a>
                 </div>
             </div>
