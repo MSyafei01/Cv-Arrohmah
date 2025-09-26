@@ -1,25 +1,267 @@
+    // Import partials
     @import 'variables';
     @import 'mixins';
     @import 'reset';
     @import 'layout';
 
-    .hero {
-    background: url('/assets/img/hero-bg.jpg') center / cover no-repeat;
-    color: $white;
-    padding: 120px 0;
-
-    h1 { font-size: 3rem; }
-    p   { margin-top: .5rem; font-size: 1.25rem; }
-
-    .btn-primary {
-        @include button($primary, $light);
-        margin-top: 2rem;
+    // Additional styles
+    .about-content {
+    @include container;
+    
+    .grid {
+        align-items: center;
+    }
+    
+    .text-content {
+        h2 {
+        @include heading-style;
+        font-size: 2rem;
+        }
+        
+        p {
+        margin-bottom: $spacing-md;
+        }
+    }
+    
+    .image-content {
+        img {
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
     }
     }
 
-    .section-video,
-    .section-achievements {
-    padding: 60px 0;
+    .products-grid {
+    @include container;
+    
+    .product-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform $transition-fast, box-shadow $transition-fast;
+        
+        &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        &-image {
+        height: 200px;
+        overflow: hidden;
+        
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform $transition-medium;
+        }
+        
+        &:hover img {
+            transform: scale(1.1);
+        }
+        }
+        
+        &-content {
+        padding: $spacing-md;
+        
+        h3 {
+            margin-bottom: $spacing-xs;
+        }
+        
+        p {
+            color: $text-light;
+            margin-bottom: $spacing-md;
+        }
+        }
+    }
+    }
 
-    h2 { text-align: center; margin-bottom: 30px; }
+    .testimonials-slider {
+    @include container;
+    position: relative;
+    
+    .testimonial {
+        background: white;
+        padding: $spacing-lg;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        text-align: center;
+        margin: 0 $spacing-sm;
+        
+        &-text {
+        font-style: italic;
+        margin-bottom: $spacing-md;
+        position: relative;
+        
+        &::before, &::after {
+            content: '"';
+            font-size: 3rem;
+            color: $secondary-color;
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        &::before {
+            top: -20px;
+            left: -10px;
+        }
+        
+        &::after {
+            bottom: -40px;
+            right: -10px;
+        }
+        }
+        
+        &-author {
+        font-weight: 600;
+        color: $primary-color;
+        }
+        
+        &-position {
+        color: $text-light;
+        font-size: 0.9rem;
+        }
+    }
+    }
+
+    .contact-info {
+    @include container;
+    
+    .grid {
+        align-items: start;
+    }
+    
+    .contact-form {
+        .form-group {
+        margin-bottom: $spacing-md;
+        
+        label {
+            display: block;
+            margin-bottom: $spacing-xs;
+            font-weight: 600;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            transition: border-color $transition-fast;
+            
+            &:focus {
+            outline: none;
+            border-color: $secondary-color;
+            }
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        }
+        
+        .btn {
+        @include button-style;
+        width: 100%;
+        }
+    }
+    
+    .contact-details {
+        .contact-item {
+        margin-bottom: $spacing-md;
+        display: flex;
+        align-items: flex-start;
+        gap: $spacing-sm;
+        
+        i {
+            color: $secondary-color;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+        }
+        
+        .social-links {
+        display: flex;
+        gap: $spacing-sm;
+        margin-top: $spacing-md;
+        
+        a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: $primary-color;
+            color: white;
+            border-radius: 50%;
+            transition: background-color $transition-fast;
+            
+            &:hover {
+            background-color: $secondary-color;
+            }
+        }
+        }
+    }
+    }
+
+    // Animations
+    .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    }
+
+    .slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    
+    &.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
+
+    .slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    
+    &.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    }
+
+    // Loading animation
+    .loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+    to { transform: rotate(360deg); }
+    }
+
+    // Responsive adjustments
+    @media (max-width: $breakpoint-md) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
     }
