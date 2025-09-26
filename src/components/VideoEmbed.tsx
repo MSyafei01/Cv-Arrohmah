@@ -1,10 +1,17 @@
-    const VideoEmbed = ({ videoId, title }) => {
+    interface VideoEmbedProps {
+    videoId: string;
+    title: string;
+    width?: string;
+    height?: string;
+    }
+
+    const VideoEmbed = ({ videoId, title, width = "100%", height = "400" }: VideoEmbedProps) => {
     return `
         <div class="video-embed">
         <iframe 
-            width="100%" 
-            height="400" 
-            src="https://www.youtube.com/watch?si=-BOeN0VVjb9qkqG_&v=ujvsIzxuBS0&feature=youtu.be${videoId}" 
+            width="${width}" 
+            height="${height}" 
+            src="https://www.youtube.com/embed/${videoId}" 
             title="${title}" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
