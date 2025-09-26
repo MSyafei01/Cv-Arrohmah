@@ -23,7 +23,7 @@
     }
     }
 
-    // Function to build JavaScript (VANILLA JS)
+    // Function to build JavaScript (VANILLA JS ONLY)
     async function buildJS() {
     try {
         await esbuild.build({
@@ -39,179 +39,7 @@
     }
     }
 
-    // Function to create proper HTML files
-function createHTML() {
-  const publicDir = path.join(__dirname, '../public');
-  
-  // Full HTML content for index.html
-  const indexHTML = `<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monascho - Home</title>
-    <link rel="stylesheet" href="assets/css/main.min.css">
-</head>
-<body>
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">Monascho</a>
-            <button class="menu-toggle">☰</button>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link">Beranda</a></li>
-                    <li><a href="about.html" class="nav-link">Tentang</a></li>
-                    <li><a href="products.html" class="nav-link">Produk</a></li>
-                    <li><a href="testimonials.html" class="nav-link">Testimoni</a></li>
-                    <li><a href="contact.html" class="nav-link">Kontak</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1>Selamat Datang di Monascho</h1>
-            <p>Perusahaan terdepan dalam menyediakan solusi berkualitas tinggi untuk kebutuhan bisnis Anda</p>
-            <a href="about.html" class="btn">Pelajari Lebih Lanjut</a>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Mengapa Memilih Kami</h2>
-            <div class="grid grid-3">
-                <div class="fade-in">
-                    <h3>Kualitas Terjamin</h3>
-                    <p>Produk kami melalui proses quality control yang ketat</p>
-                </div>
-                <div class="fade-in">
-                    <h3>Pengalaman 10+ Tahun</h3>
-                    <p>Sudah melayani ribuan klien di seluruh Indonesia</p>
-                </div>
-                <div class="fade-in">
-                    <h3>Layanan 24/7</h3>
-                    <p>Tim support siap membantu Anda kapan saja</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" style="background-color: #f8f9fa;">
-        <div class="container">
-            <div class="grid grid-2">
-                <div class="slide-in-left">
-                    <h2>Tentang Perusahaan Kami</h2>
-                    <p>Monascho didirikan dengan visi untuk menjadi pemimpin dalam industri kami. Dengan komitmen pada kualitas, inovasi, dan kepuasan pelanggan.</p>
-                    <a href="about.html" class="btn">Baca Selengkapnya</a>
-                </div>
-                <div class="slide-in-right">
-                    <img src="https://via.placeholder.com/500x300" alt="Tentang Monascho" style="width:100%; border-radius:8px;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Monascho</h3>
-                    <p>Perusahaan terdepan dalam menyediakan solusi berkualitas tinggi.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Link Cepat</h3>
-                    <a href="index.html">Beranda</a>
-                    <a href="about.html">Tentang</a>
-                    <a href="products.html">Produk</a>
-                    <a href="testimonials.html">Testimoni</a>
-                    <a href="contact.html">Kontak</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Kontak</h3>
-                    <p>Email: info@monascho.com</p>
-                    <p>Telp: (021) 1234-5678</p>
-                    <p>Alamat: Jakarta, Indonesia</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Monascho. Semua hak dilindungi.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="assets/js/app.bundle.js"></script>
-</body>
-</html>`;
-
-        // Basic HTML template for other pages
-    const basicHTML = (title, pageName) => `<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title} - Monascho</title>
-    <link rel="stylesheet" href="assets/css/main.min.css">
-</head>
-<body>
-    <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">Monascho</a>
-            <button class="menu-toggle">☰</button>
-            <nav class="nav">
-                <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link">Beranda</a></li>
-                    <li><a href="about.html" class="nav-link">Tentang</a></li>
-                    <li><a href="products.html" class="nav-link">Produk</a></li>
-                    <li><a href="testimonials.html" class="nav-link">Testimoni</a></li>
-                    <li><a href="contact.html" class="nav-link">Kontak</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1>${title}</h1>
-            <p>Halaman ${pageName} Monascho</p>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <h2>Konten ${title}</h2>
-            <p>Halaman ini sedang dalam pengembangan.</p>
-            <a href="index.html" class="btn">Kembali ke Beranda</a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Monascho. Semua hak dilindungi.</p>
-        </div>
-    </footer>
-
-    <script src="assets/js/app.bundle.js"></script>
-</body>
-</html>`;
-
-        // Create all HTML files
-        const pages = [
-            { file: 'index.html', content: indexHTML },
-            { file: 'about.html', content: basicHTML('Tentang Kami', 'tentang') },
-            { file: 'products.html', content: basicHTML('Produk', 'produk') },
-            { file: 'testimonials.html', content: basicHTML('Testimoni', 'testimoni') },
-            { file: 'contact.html', content: basicHTML('Kontak', 'kontak') }
-        ];
-
-        pages.forEach(page => {
-            fs.writeFileSync(path.join(publicDir, page.file), page.content);
-        });
-
-        console.log('✅ HTML files created successfully');
-        }
-
-    // Create assets directories if they don't exist
+    // Function to create assets directories
     function createDirs() {
     const dirs = [
         path.join(__dirname, '../public/assets/css'),
@@ -219,22 +47,56 @@ function createHTML() {
         path.join(__dirname, '../public/assets/img')
     ];
     
+    let createdCount = 0;
     dirs.forEach(dir => {
         if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });
+        createdCount++;
+        console.log(`📁 Created directory: ${dir}`);
         }
     });
+    
+    if (createdCount > 0) {
+        console.log(`✅ Created ${createdCount} directories`);
+    }
+    }
+
+    // Function to check if HTML files exist, if not create basic ones
+    function checkHTMLFiles() {
+    const publicDir = path.join(__dirname, '../public');
+    const htmlFiles = ['index.html', 'about.html', 'products.html', 'testimonials.html', 'contact.html'];
+    
+    let missingFiles = [];
+    
+    htmlFiles.forEach(file => {
+        const filePath = path.join(publicDir, file);
+        if (!fs.existsSync(filePath)) {
+        missingFiles.push(file);
+        }
+    });
+    
+    if (missingFiles.length > 0) {
+        console.log('⚠️  Missing HTML files:', missingFiles.join(', '));
+        console.log('💡 Please create HTML files manually in public/ folder');
+        console.log('💡 Or run: npm run create-html to generate basic templates');
+    } else {
+        console.log('✅ All HTML files exist (will not be overwritten)');
+    }
     }
 
     // Initial build
+    console.log('🚀 Starting development build...');
     createDirs();
     compileSass();
     buildJS();
-    copyHTML();
+    checkHTMLFiles();
 
     // Watch for changes
     console.log('👀 Watching for changes...');
+    console.log('💡 HTML files will NOT be overwritten automatically');
+    console.log('💡 Manual HTML files are preserved in public/ folder');
 
+    // Watch for SCSS changes only
     fs.watch(path.join(__dirname, '../src/styles'), { recursive: true }, (eventType, filename) => {
     if (filename && filename.endsWith('.scss')) {
         console.log(`📦 SCSS file changed: ${filename}`);
@@ -242,6 +104,7 @@ function createHTML() {
     }
     });
 
+    // Watch for JS changes only
     fs.watch(path.join(__dirname, '../src'), { recursive: true }, (eventType, filename) => {
     if (filename && filename.endsWith('.js')) {
         console.log(`📦 JavaScript file changed: ${filename}`);
