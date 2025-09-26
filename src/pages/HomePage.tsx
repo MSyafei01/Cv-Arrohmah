@@ -11,7 +11,7 @@
         subtitle: "Kami adalah perusahaan terdepan dalam menyediakan solusi berkualitas tinggi untuk kebutuhan bisnis Anda.",
         buttonText: "Pelajari Lebih Lanjut",
         buttonLink: "about.html",
-        backgroundImage: "assets/img/hero-bg.jpg"
+        backgroundImage: "profil.JPEG"
         })}
         
         <section class="section">
@@ -41,7 +41,7 @@
                 <a href="about.html" class="btn">Baca Selengkapnya</a>
             </div>
             <div class="slide-in-right">
-                <img src="assets/img/about-preview.jpg" alt="Tentang Monascho">
+                <img src="profil.JPEG" alt="Tentang Monascho">
             </div>
             </div>
         </div>
