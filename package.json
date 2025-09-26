@@ -9,10 +9,10 @@
     },
     "devDependencies": {
         "@types/react": "^18.0.0",
-        "typescript": "^5.0.0",
-        "esbuild": "^0.19.0",
+        "esbuild": "^0.25.10",
         "sass": "^1.66.0",
-        "serve": "^14.2.0"
+        "serve": "^14.2.0",
+        "typescript": "^5.0.0"
     },
     "dependencies": {
         "@types/react": "^19.1.13",
