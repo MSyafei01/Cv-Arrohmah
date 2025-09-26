@@ -1,182 +1,265 @@
-        import { gsap } from 'gsap';
-        import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-        // Register ScrollTrigger plugin
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Import components (simplified for static site)
-        import HomePage from './pages/HomePage';
-        import AboutPage from './pages/AboutPage';
-        import ProductsPage from './pages/ProductsPage';
-        import TestimonialsPage from './pages/TestimonialsPage';
-        import ContactPage from './pages/ContactPage';
-
-        // Router for SPA-like behavior
-        class Router {
+    // Simple Router untuk SPA
+    class Router {
         constructor() {
             this.routes = {
-            '/': HomePage,
-            '/index.html': HomePage,
-            '/about.html': AboutPage,
-            '/products.html': ProductsPage,
-            '/testimonials.html': TestimonialsPage,
-            '/contact.html': ContactPage
+                '/': this.homePage,
+                '/index.html': this.homePage,
+                '/about.html': this.aboutPage,
+                '/products.html': this.productsPage,
+                '/testimonials.html': this.testimonialsPage,
+                '/contact.html': this.contactPage
             };
-            
             this.init();
         }
-        
+
         init() {
-            // Handle initial load
             this.navigate(window.location.pathname);
+            window.addEventListener('popstate', () => this.navigate(window.location.pathname));
             
-            // Handle back/forward navigation
-            window.addEventListener('popstate', () => {
-            this.navigate(window.location.pathname);
-            });
-            
-            // Handle link clicks
+            // Delegate link clicks
             document.addEventListener('click', (e) => {
-            if (e.target.matches('[data-link]')) {
-                e.preventDefault();
-                this.navigate(e.target.href);
-            }
+                if (e.target.matches('a') && e.target.getAttribute('href').startsWith('/')) {
+                    e.preventDefault();
+                    this.navigate(e.target.getAttribute('href'));
+                }
             });
         }
-        
+
         navigate(path) {
-            const route = this.routes[path] || HomePage;
-            
-            // Update content
+            const route = this.routes[path] || this.homePage;
             document.getElementById('app').innerHTML = route();
-            
-            // Update browser history
             window.history.pushState(null, null, path);
-            
-            // Initialize animations
             this.initAnimations();
-            
-            // Scroll to top
             window.scrollTo(0, 0);
         }
-        
+
         initAnimations() {
-            // Initialize GSAP animations
-            gsap.fromTo('.fade-in', 
-            { opacity: 0, y: 30 },
-            { 
-                opacity: 1, 
-                y: 0, 
-                duration: 0.8, 
-                stagger: 0.2,
-                scrollTrigger: {
-                trigger: '.fade-in',
-                start: 'top 80%',
-                toggleActions: 'play none none reverse'
-                }
-            }
-            );
-            
-            gsap.fromTo('.slide-in-left', 
-            { opacity: 0, x: -50 },
-            { 
-                opacity: 1, 
-                x: 0, 
-                duration: 0.8,
-                scrollTrigger: {
-                trigger: '.slide-in-left',
-                start: 'top 80%',
-                toggleActions: 'play none none reverse'
-                }
-            }
-            );
-            
-            gsap.fromTo('.slide-in-right', 
-            { opacity: 0, x: 50 },
-            { 
-                opacity: 1, 
-                x: 0, 
-                duration: 0.8,
-                scrollTrigger: {
-                trigger: '.slide-in-right',
-                start: 'top 80%',
-                toggleActions: 'play none none reverse'
-                }
-            }
-            );
-            
-            // Hero animation
-            gsap.fromTo('.hero h1', 
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 1, delay: 0.3 }
-            );
-            
-            gsap.fromTo('.hero p', 
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 1, delay: 0.6 }
-            );
-            
-            gsap.fromTo('.hero .btn', 
-            { opacity: 0, scale: 0.8 },
-            { opacity: 1, scale: 1, duration: 0.8, delay: 0.9 }
-            );
-        }
+            // Simple fade-in animations
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100);
+            });
         }
 
-        // Initialize the router when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
+        // Header Component
+        header() {
+            return `
+                <header class="header">
+                    <div class="container">
+                        <a href="/" class="logo">Monascho</a>
+                        <button class="menu-toggle">☰</button>
+                        <nav class="nav">
+                            <ul class="nav-list">
+                                <li><a href="/" class="nav-link">Beranda</a></li>
+                                <li><a href="/about.html" class="nav-link">Tentang</a></li>
+                                <li><a href="/products.html" class="nav-link">Produk</a></li>
+                                <li><a href="/testimonials.html" class="nav-link">Testimoni</a></li>
+                                <li><a href="/contact.html" class="nav-link">Kontak</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </header>
+            `;
+        }
+
+        // Footer Component
+        footer() {
+            return `
+                <footer class="footer">
+                    <div class="container">
+                        <div class="footer-content">
+                            <div class="footer-section">
+                                <h3>Monascho</h3>
+                                <p>Perusahaan terdepan dalam menyediakan solusi berkualitas tinggi.</p>
+                            </div>
+                            <div class="footer-section">
+                                <h3>Link Cepat</h3>
+                                <a href="/">Beranda</a>
+                                <a href="/about.html">Tentang</a>
+                                <a href="/products.html">Produk</a>
+                                <a href="/testimonials.html">Testimoni</a>
+                                <a href="/contact.html">Kontak</a>
+                            </div>
+                            <div class="footer-section">
+                                <h3>Kontak</h3>
+                                <p>Email: info@monascho.com</p>
+                                <p>Telp: (021) 1234-5678</p>
+                                <p>Alamat: Jakarta, Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="footer-bottom">
+                            <p>&copy; 2025 Monascho. All rights reserved.</p>
+                        </div>
+                    </div>
+                </footer>
+            `;
+        }
+
+        // Hero Component
+        hero(title, subtitle, buttonText = '', buttonLink = '#') {
+            return `
+                <section class="hero">
+                    <div class="container">
+                        <h1>${title}</h1>
+                        <p>${subtitle}</p>
+                        ${buttonText ? `<a href="${buttonLink}" class="btn">${buttonText}</a>` : ''}
+                    </div>
+                </section>
+            `;
+        }
+
+        // Pages
+        homePage() {
+            return `
+                ${this.header()}
+                ${this.hero(
+                    'Selamat Datang di Monascho',
+                    'Perusahaan terdepan dalam solusi berkualitas tinggi untuk bisnis Anda',
+                    'Pelajari Lebih Lanjut',
+                    '/about.html'
+                )}
+                <section class="section">
+                    <h2 class="section-title">Mengapa Memilih Kami</h2>
+                    <div class="container grid grid-3">
+                        <div class="fade-in">
+                            <h3>Kualitas Terjamin</h3>
+                            <p>Produk melalui quality control ketat.</p>
+                        </div>
+                        <div class="fade-in">
+                            <h3>Pengalaman 10+ Tahun</h3>
+                            <p>Memahami kebutuhan pasar dengan baik.</p>
+                        </div>
+                        <div class="fade-in">
+                            <h3>Layanan 24/7</h3>
+                            <p>Customer service siap membantu kapan saja.</p>
+                        </div>
+                    </div>
+                </section>
+                ${this.footer()}
+            `;
+        }
+
+        aboutPage() {
+            return `
+                ${this.header()}
+                ${this.hero('Tentang Kami', 'Sejarah dan visi misi perusahaan')}
+                <section class="section">
+                    <div class="container">
+                        <div class="grid grid-2">
+                            <div class="fade-in">
+                                <h2>Sejarah Perusahaan</h2>
+                                <p>Monascho didirikan pada tahun 2010 dengan visi menjadi pemimpin industri.</p>
+                            </div>
+                            <div class="fade-in">
+                                <img src="https://via.placeholder.com/500x300" alt="Sejarah">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                ${this.footer()}
+            `;
+        }
+
+        productsPage() {
+            return `
+                ${this.header()}
+                ${this.hero('Produk Kami', 'Solusi terbaik untuk kebutuhan Anda')}
+                <section class="section">
+                    <div class="container">
+                        <div class="grid grid-3">
+                            ${[1, 2, 3, 4, 5, 6].map(i => `
+                                <div class="fade-in">
+                                    <div class="product-card">
+                                        <img src="https://via.placeholder.com/300x200" alt="Produk ${i}">
+                                        <h3>Produk ${i}</h3>
+                                        <p>Deskripsi produk ${i}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+                ${this.footer()}
+            `;
+        }
+
+        testimonialsPage() {
+            return `
+                ${this.header()}
+                ${this.hero('Testimoni', 'Apa kata pelanggan kami')}
+                <section class="section">
+                    <div class="container">
+                        <div class="grid grid-3">
+                            ${[1, 2, 3].map(i => `
+                                <div class="fade-in">
+                                    <div class="testimonial">
+                                        <p>"Pelayanan sangat memuaskan!"</p>
+                                        <strong>Customer ${i}</strong>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+                ${this.footer()}
+            `;
+        }
+
+        contactPage() {
+            return `
+                ${this.header()}
+                ${this.hero('Hubungi Kami', 'Kami siap membantu Anda')}
+                <section class="section">
+                    <div class="container">
+                        <div class="grid grid-2">
+                            <div class="fade-in">
+                                <form id="contactForm">
+                                    <input type="text" placeholder="Nama" required>
+                                    <input type="email" placeholder="Email" required>
+                                    <textarea placeholder="Pesan" required></textarea>
+                                    <button type="submit" class="btn">Kirim Pesan</button>
+                                </form>
+                            </div>
+                            <div class="fade-in">
+                                <h3>Kontak Info</h3>
+                                <p>Email: info@monascho.com</p>
+                                <p>Telepon: (021) 1234-5678</p>
+                                <p>Alamat: Jakarta, Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                ${this.footer()}
+            `;
+        }
+    }
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
         new Router();
-        });
+    });
 
-        // Handle form submissions
-        
-        document.addEventListener('submit', (e) => {
-        if (e.target.matches('form')) {
-            e.preventDefault();
-            
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            // Show loading state
-            submitBtn.innerHTML = '<span class="loading"></span> Mengirim...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-            alert('Terima kasih! Pesan Anda telah terkirim. Kami akan menghubungi Anda segera.');
-            e.target.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-            }, 2000);
-        }
-        });
-
-        // Mobile menu functionality
-        document.addEventListener('click', (e) => {
-        if (e.target.matches('.menu-toggle')) {
+    // Mobile menu functionality
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('menu-toggle')) {
             const nav = document.querySelector('.nav');
-            const toggle = document.querySelector('.menu-toggle');
-            
             nav.classList.toggle('active');
-            toggle.textContent = nav.classList.contains('active') ? '✕' : '☰';
+            e.target.textContent = nav.classList.contains('active') ? '✕' : '☰';
         }
-        
-        // Close menu when clicking on a link
-        if (e.target.matches('.nav-link')) {
-            const nav = document.querySelector('.nav');
-            const toggle = document.querySelector('.menu-toggle');
-            
-            nav.classList.remove('active');
-            toggle.textContent = '☰';
-        }
-        });
+    });
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+    // Form handling
+    document.addEventListener('submit', (e) => {
+        if (e.target.id === 'contactForm') {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah terkirim.');
+            e.target.reset();
         }
-        });
+    });
