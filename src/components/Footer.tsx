@@ -28,9 +28,9 @@
                 <h3>Ikuti Kami</h3>
                 <div class="social-links">
                 <a href="" aria-label="Facebook">FB</a>
-                <a href="#" aria-label="Instagram">IG</a>
-                <a href="https://www.tiktok.com/@monascho" aria-label="Tiktok">TW</a>
-                <a href="#" aria-label="LinkedIn">IN</a>
+                <a href="https://www.instagram.com/monascho_jember_/?igshid=YmMyMTA2M2Y%3D" aria-label="Instagram">IG</a>
+                <a href="https://www.tiktok.com/@monascho" aria-label="Tiktok">TK</a>
+                <a href="https://www.youtube.com/channel/UCiuLcffiTGHFTwkIwJ0umkw" aria-label="Youtube">YT</a>
                 </div>
             </div>
             </div>
