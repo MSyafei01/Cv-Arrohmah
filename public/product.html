@@ -1,17 +1,58 @@
-    <!DOCTYPE html>
-    <html lang="id">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Produk - Monascho</title>
-        <meta name="description" content="Produk-produk unggulan dari Monascho">
-        <link rel="stylesheet" href="assets/css/main.min.css">
-        <link rel="icon" href="favicon.ico">
-    </head>
-    <body>
-        <div id="app">
-            <!-- Konten akan diisi oleh JavaScript -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Monascho</title>
+    <link rel="stylesheet" href="assets/css/main.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">Monascho</a>
+            <button class="menu-toggle">☰</button>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Beranda</a></li>
+                    <li><a href="about.html" class="nav-link">Tentang</a></li>
+                    <li><a href="product.html" class="nav-link active">Produk</a></li>
+                    <li><a href="testimonials.html" class="nav-link">Testimoni</a></li>
+                    <li><a href="contact.html" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
         </div>
-        <script src="assets/js/app.bundle.js"></script>
-    </body>
-    </html>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Produk Kami</h1>
+            <p>Solusi terbaik untuk kebutuhan bisnis Anda</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="products-grid">
+            <div class="grid grid-3">
+                <!-- Product cards here -->
+                <div class="product-card fade-in">
+                    <div class="product-card-image">
+                        <img src="https://via.placeholder.com/300x200" alt="Produk 1">
+                    </div>
+                    <div class="product-card-content">
+                        <h3>Produk A</h3>
+                        <p>Deskripsi produk A yang menarik</p>
+                        <a href="#" class="btn">Detail</a>
+                    </div>
+                </div>
+                <!-- Add more product -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <!-- Same footer as about.html -->
+    </footer>
+
+    <script src="assets/js/app.bundle.js"></script>
+</body>
+</html>
